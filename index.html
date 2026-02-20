@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.L.K // THE MONOLITH</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Unicons & Bold Fonts -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Environment lighting & noise -->
+    <div id="atmosphere"></div>
+
+    <main class="scene">
+
+        <!-- Instructional text -->
+        <div class="instructions">DRAG TO ROTATE // CLICK FACES TO REVEAL</div>
+
+        <!-- The 3D CSS Monolith -->
+        <div class="monolith-wrapper">
+            <div class="monolith" id="main-monolith">
+
+                <!-- FRONT FACE: IDENTITÉ -->
+                <div class="face f-front" data-face="front">
+                    <div class="content-wrapper">
+                        <div class="m-header">I. IDENTITÉ</div>
+                        <div class="scrollable-content">
+                            <h1 class="massive-text">MARKO<br>LE COMTE<br>KOLAK</h1>
+                            <p class="role-text" style="color:var(--gold); font-size: 0.85rem; margin-bottom: 20px;">
+                                Créateur d'expériences numériques innovantes. Passionné par le code, le design et les
+                                technologies qui transforment le web.</p>
+                            <div class="m-divider"></div>
+
+                            <div class="m-item">
+                                <h3 class="m-title">À PROPOS - Mon Parcours</h3>
+                                <p class="desc">Étudiant passionné en développement web, je construis mon expertise à
+                                    travers une formation solide et des projets concrets.</p>
+                                <p class="desc">Bonjour, je suis Marko. Actuellement en BTS SIO option SLAM au Lycée
+                                    public des Sciences et du Numérique - Louis Armand, je me spécialise dans le
+                                    développement d'applications web et la création de solutions logicielles innovantes.
+                                </p>
+                                <p class="desc">Le BTS SIO (Services Informatiques aux Organisations) est une formation
+                                    de deux ans qui forme aux métiers du développement et de l'administration réseau.
+                                    Elle offre une solide base technique et ouvre les portes du marché du travail ou de
+                                    la poursuite d'études supérieures.</p>
+                            </div>
+
+                            <div class="m-item">
+                                <h3 class="m-title">Spécialisations</h3>
+                                <ul class="skills-list" style="margin-bottom: 0;">
+                                    <li>[SLAM]: Solutions Logicielles et App. Métiers. Dév web, apps sur mesure.</li>
+                                    <li>[SISR]: Solutions d'Infrastructure, Systèmes et Réseaux. Admin système.</li>
+                                </ul>
+                            </div>
+
+                            <div class="m-item">
+                                <h3 class="m-title">Parcours Académique</h3>
+                                <ul class="skills-list">
+                                    <li>[2024-Présent]: BTS SIO opt. SLAM (Lycée public Louis Armand)</li>
+                                    <li>[2023-2024]: DUT PaRéO</li>
+                                    <li>[2022-2023]: Baccalauréat Général (Lycée Fénelon) - Maths / Physique-Chimie</li>
+                                </ul>
+                            </div>
+
+                            <div class="m-item">
+                                <h3 class="m-title">Stack Technologique</h3>
+                                <p class="desc" style="margin-bottom: 0;">HTML5, CSS3, JavaScript, PHP, MySQL, Python,
+                                    Flask, C#</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT FACE: EXPERIENCES -->
+                <div class="face f-right" data-face="right">
+                    <div class="content-wrapper">
+                        <div class="m-header">II. EXPÉRIENCE</div>
+                        <div class="scrollable-content">
+                            <div class="m-item">
+                                <div class="m-year">25-26</div>
+                                <h3 class="m-title">La Dictée Géante</h3>
+                                <span class="m-tag">Déc. 2025 - Févr. 2026</span>
+                                <p class="m-desc">Conception et développement du site vitrine pour le jeu de société "La
+                                    Dictée Géante" (Figma, HTML/CSS/JS). Création de la plateforme événementielle "La
+                                    Dictée des Voisins" (Inscriptions, Dashboard admin).</p>
+                                <span class="m-tag" style="margin-top:10px;">UI/UX Design • Intégration Responsive •
+                                    Méthode Agile • Git</span>
+                            </div>
+
+                            <div class="m-item">
+                                <div class="m-year">25</div>
+                                <h3 class="m-title">Hôpital E. Georges-Pompidou (AP-HP)</h3>
+                                <span class="m-tag">19 mai au 04 juillet 2025 (7 semaines)</span>
+                                <p class="m-desc">Stage autour d’un chatbot médical interne. Cadrage fonctionnel avec
+                                    les équipes de soins. Conception d’une architecture Flask/API REST. Sécurisation par
+                                    JWT et CORS. Mise en place d’un flux d’ingestion documentaire (base de
+                                    connaissances). Développement d’interface web et déploiement Nginx (RGPD).</p>
+                                <span class="m-tag" style="margin-top:10px;">Python (Flask) • API REST • JWT •
+                                    RGPD</span>
+                            </div>
+
+                            <div class="m-item">
+                                <div class="m-year">23</div>
+                                <h3 class="m-title">RC-Group • Service Informatique</h3>
+                                <span class="m-tag">04 déc au 15 déc 2023 (2 semaines)</span>
+                                <p class="m-desc">Installation et configuration d'équipements informatiques. Support
+                                    technique et résolution d'incidents logiciels et matériels. Maintenance préventive
+                                    et optimisation du parc informatique. Documentation des interventions.</p>
+                                <span class="m-tag" style="margin-top:10px;">Support IT • Maintenance • Dépannage •
+                                    Configuration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BACK FACE: PROJETS -->
+                <div class="face f-back" data-face="back">
+                    <div class="content-wrapper">
+                        <div class="m-header">III. RÉALISATIONS</div>
+                        <div class="scrollable-content m-grid"
+                            style="align-items: stretch; justify-content: flex-start; padding-bottom: 20px;">
+                            <div class="m-card">
+                                <h3>Jeu de Tir Interactif</h3>
+                                <span class="m-tag">HTML5 • CSS3 • JavaScript • Canvas API • Game Logic</span>
+                                <p>Application web interactive de simulation de tir développée en JavaScript vanilla. Le
+                                    jeu intègre une mécanique réaliste de gestion du vent qui influence la trajectoire
+                                    des projectiles.</p>
+                            </div>
+                            <div class="m-card">
+                                <h3>💊 PharmaSI</h3>
+                                <span class="m-tag">C# • .NET • MySQL • WinForms</span>
+                                <p>Application Windows de gestion de rapports de visite pour laboratoires
+                                    pharmaceutiques. Architecture N-Tier, Pattern Singleton, Sécurisation (Hash,
+                                    Injections SQL) et gestion des rôles (Visiteur, Délégué, Responsable).</p>
+                            </div>
+                            <div class="m-card">
+                                <h3>🛒 Gestion Supermarché</h3>
+                                <span class="m-tag">PHP • SQL • HTML/CSS</span>
+                                <p>Développement d'une application web pour la gestion de stocks et de produits d'un
+                                    supermarché. Opérations CRUD complètes, authentification et base de données
+                                    relationnelle.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEFT FACE: VEILLE -->
+                <div class="face f-left" data-face="left">
+                    <div class="content-wrapper">
+                        <div class="m-header">IV. INNOVATION - VEILLE</div>
+                        <div class="scrollable-content" style="display: flex; flex-direction: column; width: 100%;">
+                            <div class="v-context" style="margin-bottom:10px;">Suivi des évolutions GPU, Ray Tracing,
+                                DLSS &
+                                FSR et leur impact sur le graphisme et gaming.</div>
+                            <div class="m-divider" style="margin: 10px 0;"></div>
+
+                            <div id="monolith-rss" style="flex:1; margin-bottom: 20px;">
+                                <div class="m-loading">SEEKING SIGNAL...</div>
+                            </div>
+
+                            <div class="m-divider" style="margin: 10px 0;"></div>
+                            <div class="m-item" style="margin-bottom:0; flex-shrink: 0;">
+                                <h3 class="m-title">CONTACT & LIENS</h3>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <a href="mailto:marko.kolak.117@gmail.com" class="m-link">marko.kolak.117@gmail.com
+                                        <i class="uil uil-envelope"></i></a>
+                                    <a href="https://github.com/horizonmoine" target="_blank" class="m-link">GitHub <i
+                                            class="uil uil-github"></i></a>
+                                    <a href="https://www.linkedin.com/in/marko-kolak/" target="_blank"
+                                        class="m-link">LinkedIn Profil <i class="uil uil-linkedin"></i></a>
+                                    <a href="CV Kolak Marko Stage BTS SIO.pdf" target="_blank"
+                                        class="m-link">Télécharger
+                                        Curriculum Vitae <i class="uil uil-file-alt"></i></a>
+                                    <a href="Synthese_Epreuve_E5.pdf" target="_blank" class="m-link">Google
+                                        Sheet / Synthèse SIO <i class="uil uil-file-bookmark-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOP & BOTTOM CAPS (For true 3D shape) -->
+                <div class="face f-top"></div>
+                <div class="face f-bottom"></div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,531 @@
+:root {
+    --bg-dark: #050505;
+    --mono-face: #121212;
+    --mono-edge: #222;
+    --text-glow: rgba(255, 255, 255, 0.8);
+    --gold: #dfa04c;
+    --font-massive: 'Anton', sans-serif;
+    --font-read: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #fff;
+    font-family: var(--font-read);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    cursor: grab;
+}
+
+body:active {
+    cursor: grabbing;
+}
+
+/* ATMOSPHERE / NOISE GRAIN */
+#atmosphere {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+}
+
+/* Subte ambient light behind the monolith */
+#atmosphere::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vh;
+    height: 100vh;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+}
+
+.instructions {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: #666;
+    font-weight: 700;
+    z-index: 20;
+    text-align: center;
+}
+
+/* 3D SCENE SETUP */
+.scene {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    pointer-events: none;
+}
+
+.monolith-wrapper {
+    width: 400px;
+    height: 80vh;
+    max-height: 800px;
+    position: relative;
+    transform-style: preserve-3d;
+    pointer-events: none;
+}
+
+.monolith {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translateZ(-200px) rotateY(-20deg) rotateX(5deg);
+    transition: transform 0.1s;
+    /* smooth drag */
+    pointer-events: none;
+}
+
+.face {
+    position: absolute;
+    border: 1px solid var(--mono-edge);
+    background: var(--mono-face);
+    /* Complex internal shadow to simulate Obsidian glass depth */
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9), inset 0 0 10px rgba(255, 255, 255, 0.02);
+    display: flex;
+    overflow: hidden;
+    transition: box-shadow 0.3s, border-color 0.3s, transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    pointer-events: auto;
+}
+
+/* Pseudo Environment Mapping (Glass Reflection) */
+.face::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.03) 45%,
+            rgba(255, 255, 255, 0.08) 50%,
+            transparent 55%);
+    pointer-events: none;
+    z-index: 10;
+    mix-blend-mode: color-dodge;
+    transition: transform 0.1s linear;
+    transform: rotate(0deg) translate(0, 0);
+}
+
+/* Dimensions of the Monolith */
+/* Front/Back: 400x800 */
+/* Left/Right: 400x800 (making it a square pillar) */
+/* Top/Bottom: 400x400 */
+
+.f-front {
+    width: 400px;
+    height: 100%;
+    transform: rotateY(0deg) translateZ(200px);
+}
+
+.f-back {
+    width: 400px;
+    height: 100%;
+    transform: rotateY(180deg) translateZ(200px);
+}
+
+.f-right {
+    width: 400px;
+    height: 100%;
+    transform: rotateY(90deg) translateZ(200px);
+}
+
+.f-left {
+    width: 400px;
+    height: 100%;
+    transform: rotateY(-90deg) translateZ(200px);
+}
+
+.f-top {
+    width: 400px;
+    height: 400px;
+    transform: rotateX(90deg) translateZ(200px);
+    background: #080808;
+}
+
+.f-bottom {
+    width: 400px;
+    height: 400px;
+    transform: rotateX(-90deg) translateZ(calc(100% - 200px));
+    background: #020202;
+    box-shadow: 0 0 150px rgba(223, 160, 76, 0);
+    /* Core glow origin */
+    transition: box-shadow 0.3s;
+}
+
+/* Base Translations (Used in calc for displacement) */
+:root {
+    --tz: 200px;
+    --tz-mobile: 150px;
+}
+
+/* Hover effect on faces */
+.face[data-face]:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* CONTENT INSIDE FACES */
+.content-wrapper {
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.3;
+    transition: opacity 0.4s;
+    overflow: hidden;
+    /* Prevent this from expanding beyond face */
+}
+
+/* When face is hovered/active, brighten content */
+.face[data-face]:hover .content-wrapper,
+.face[data-face].active .content-wrapper {
+    opacity: 1;
+}
+
+.face.active {
+    z-index: 100;
+}
+
+.m-header {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: auto;
+    /* pushes everything else down */
+}
+
+.m-divider {
+    height: 1px;
+    width: 50px;
+    background: #333;
+    margin: 20px 0;
+}
+
+/* FRONT FACE CONTENT */
+.massive-text {
+    font-family: var(--font-massive);
+    font-size: 5.5rem;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: transparent;
+    -webkit-text-stroke: 1px #555;
+    transition: all 0.5s;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.face.active .massive-text {
+    color: #fff;
+    -webkit-text-stroke: 0px;
+    text-shadow: 0 0 20px var(--text-glow);
+}
+
+.role-text {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+}
+
+.desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.skills-list {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.skills-list li {
+    font-size: 0.75rem;
+    font-family: var(--font-massive);
+    letter-spacing: 1px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.action-zone {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.m-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid transparent;
+    transition: 0.2s;
+    /* Fix clickability in 3D context */
+    position: relative;
+    z-index: 1000;
+    pointer-events: auto;
+    transform: translateZ(20px);
+}
+
+.m-link:hover {
+    border-bottom-color: var(--gold);
+    color: var(--gold);
+}
+
+/* RIGHT FACE & BACK FACE (Lists & Grids) */
+.m-item {
+    margin-bottom: 30px;
+}
+
+.m-year {
+    font-family: var(--font-massive);
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: -10px;
+}
+
+.m-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.m-desc {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.5;
+}
+
+.m-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.m-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid #222;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.m-card:hover {
+    border-color: var(--gold);
+    background: rgba(223, 160, 76, 0.05);
+}
+
+.m-card h3 {
+    font-family: var(--font-massive);
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.m-card h3 span {
+    font-size: 0.8rem;
+    color: #666;
+    font-family: var(--font-read);
+}
+
+.m-tag {
+    font-size: 0.7rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.m-card p {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+}
+
+/* LEFT FACE (RSS) */
+.f-left .content-wrapper {
+    justify-content: flex-start;
+}
+
+.v-context {
+    font-size: 0.75rem;
+    color: #666;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.scrollable-content {
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    /* Force strict flex bounds */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+
+    position: relative;
+    z-index: 50;
+    /* Ensure it stays above glassy effects if applicable */
+    pointer-events: auto;
+    touch-action: pan-y;
+    transform: translateZ(1px);
+    /* Ensure events can fire here */
+}
+
+.scrollable-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: rgba(223, 160, 76, 0.5);
+    /* Semi-transparent gold */
+    border-radius: 4px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(223, 160, 76, 0.9);
+}
+
+.m-rss-item {
+    margin-bottom: 25px;
+    border-left: 1px solid #333;
+    padding-left: 15px;
+    transition: 0.3s;
+}
+
+.m-rss-item:hover {
+    border-left-color: var(--gold);
+}
+
+.m-rss-date {
+    font-size: 0.65rem;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.m-rss-title {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.3;
+    transition: 0.2s;
+}
+
+.m-rss-item:hover .m-rss-title {
+    color: #fff;
+}
+
+.m-loading {
+    font-family: var(--font-massive);
+    font-size: 2rem;
+    color: #333;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
+
+@media(max-width: 800px) {
+    .monolith-wrapper {
+        width: 300px;
+        height: 75vh;
+    }
+
+    .f-front,
+    .f-back,
+    .f-right,
+    .f-left {
+        width: 300px;
+    }
+
+    .f-top,
+    .f-bottom {
+        width: 300px;
+        height: 300px;
+    }
+
+    .f-front {
+        transform: rotateY(0deg) translateZ(150px);
+    }
+
+    .f-back {
+        transform: rotateY(180deg) translateZ(150px);
+    }
+
+    .f-right {
+        transform: rotateY(90deg) translateZ(150px);
+    }
+
+    .f-left {
+        transform: rotateY(-90deg) translateZ(150px);
+    }
+
+    .f-top {
+        transform: rotateX(90deg) translateZ(150px);
+    }
+
+    .f-bottom {
+        transform: rotateX(-90deg) translateZ(calc(100% - 150px));
+    }
+
+    .massive-text {
+        font-size: 4rem;
+    }
+}
