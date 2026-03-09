@@ -153,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let dragVelocity = 0;
     let dragTotal = 0;
 
-    let rotation = { x: 0, y: -20 };
-    let targetRotation = { x: 0, y: -20 };
+    let rotation = { x: 0, y: 0 };
+    let targetRotation = { x: 0, y: 0 };
 
     function getActiveLinkAtPoint(x, y) {
         const activeFace = document.querySelector('.face.active');
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    setTimeout(() => { updateActiveFace(0); }, 800);
+    updateActiveFace(0);
 
     // --- PROJECT MODAL ---
     function openProjectModal(projectId) {

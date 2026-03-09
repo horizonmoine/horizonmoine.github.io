@@ -117,7 +117,7 @@ body:active {
     height: 100%;
     position: absolute;
     transform-style: preserve-3d;
-    transform: translateZ(calc(-1 * var(--mono-half))) rotateY(-20deg) rotateX(5deg);
+    transform: translateZ(calc(-1 * var(--mono-half))) rotateY(0deg) rotateX(0deg);
     transition: transform 0.1s;
     pointer-events: none;
 }
