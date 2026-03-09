@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- ENTRANCE ANIMATION ---
-    gsap.set('.monolith-wrapper', { opacity: 0 });
-    gsap.set('.instructions', { opacity: 0, y: -10 });
+    // Fade out the veil instead of animating opacity on the 3D wrapper
+    // (opacity < 1 on preserve-3d flattens perspective in browsers)
+    const veil = document.getElementById('intro-veil');
+    if (veil) {
+        setTimeout(() => veil.classList.add('fade'), 100);
+        veil.addEventListener('transitionend', () => veil.remove());
+    }
 
-    gsap.to('.monolith-wrapper', {
-        opacity: 1,
-        duration: 2.5,
-        delay: 0.3,
-        ease: 'power2.out'
-    });
+    gsap.set('.instructions', { opacity: 0, y: -10 });
     gsap.to('.instructions', {
         opacity: 1,
         y: 0,
