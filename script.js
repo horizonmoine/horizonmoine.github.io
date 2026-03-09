@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let rotation = { x: 0, y: -20 };
     // Target rotation (for smooth interpolation/easing)
     let targetRotation = { x: 0, y: -20 };
-    
+
     // Fallback logic for links in 3D that might lose hit-testing
     function getActiveLinkAtPoint(x, y) {
         const activeFace = document.querySelector('.face.active');
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseup', (e) => {
         isDragging = false;
         snapToClosestFace();
-        
+
         // Manual click handling to bypass 3D hit test bugs
         if (dragTotal < 10) {
             const link = getActiveLinkAtPoint(e.clientX, e.clientY);
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         const vel = Math.abs(deltaMove.x) + Math.abs(deltaMove.y);
         dragTotal += vel;
-        
+
         targetRotation.y += deltaMove.x * 0.4;
         targetRotation.x -= deltaMove.y * 0.4;
         targetRotation.x = Math.max(-20, Math.min(20, targetRotation.x));
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchend', (e) => {
         isDragging = false;
         snapToClosestFace();
-        
+
         if (dragTotal < 10 && e.changedTouches && e.changedTouches.length > 0) {
             const link = getActiveLinkAtPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
             if (link) {
@@ -206,41 +206,110 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- VEILLE RSS FETCH ---
     async function fetchVeille() {
         const rssContainer = document.getElementById('monolith-rss');
-        // Fetching specific Google Alerts / News queries
-        // Note: RSS2JSON API might be a bit rate-limited, but this fetches the latest news on those subjects.
-        const rssFeedUrl = 'https://news.google.com/rss/search?q="IA+Générative"+OR+"Intelligence+Artificielle"+OR+GPU+OR+Deep+Learning&hl=fr&gl=FR&ceid=FR:fr';
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
+        // Highly focused queries on upscaling & ray tracing technologies
+        const queries = [
+            '"DLSS 4" OR "DLSS 3.5" technology',
+            '"AMD FSR 3" OR "FidelityFX Super Resolution"',
+            '"Intel XeSS" upscaling',
+            '"Ray Tracing" OR "Path Tracing" performance',
+            'DLSS vs FSR vs XeSS comparison'
+        ];
+
+        console.log("Fetching RSS feeds...");
+        rssContainer.innerHTML = '<div class="m-loading">SEEKING SIGNAL...</div>';
 
         try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
+            const allItems = [];
 
-            if (data.status === 'ok' && data.items.length > 0) {
+            // Fetch with delay to avoid rate limiting
+            for (const searchQuery of queries) {
+                try {
+                    const rssFeedUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(searchQuery)}&hl=fr&gl=FR&ceid=FR:fr`;
+                    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssFeedUrl)}`;
+
+                    console.log(`Fetching: ${searchQuery}`);
+                    const response = await fetch(proxyUrl, { timeout: 10000 });
+
+                    if (!response.ok) {
+                        console.warn(`Failed to fetch ${searchQuery}: ${response.status}`);
+                        continue;
+                    }
+
+                    const data = await response.json();
+
+                    if (data.contents) {
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+                        const items = xmlDoc.querySelectorAll("item");
+                        const parsedItems = Array.from(items).map(item => ({
+                            title: item.querySelector("title")?.textContent || "No Title",
+                            link: item.querySelector("link")?.textContent || "#",
+                            pubDate: item.querySelector("pubDate")?.textContent || ""
+                        }));
+                        allItems.push(...parsedItems);
+                        console.log(`✓ Fetched ${parsedItems.length} items from: ${searchQuery}`);
+                    }
+
+                    // Small delay between requests to avoid rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                } catch (err) {
+                    console.error(`Error fetching ${searchQuery}:`, err);
+                }
+            }
+
+            console.log(`Total items fetched: ${allItems.length}`);
+
+            // Merge and de-duplicate by clean title
+            const seenTitles = new Set();
+            const uniqueItems = allItems
+                .map(item => {
+                    const cleanTitle = item.title.replace(/ - [^-]+$/, '').trim();
+                    return { ...item, cleanTitle };
+                })
+                .filter(item => {
+                    if (seenTitles.has(item.cleanTitle)) return false;
+                    seenTitles.add(item.cleanTitle);
+                    return true;
+                })
+                // Sort by date (descending)
+                .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+            if (uniqueItems.length > 0) {
                 rssContainer.innerHTML = '';
-                const articles = data.items.slice(0, 6);
+                const limit = Math.min(uniqueItems.length, 12);
 
-                articles.forEach((art, i) => {
-                    const date = new Date(art.pubDate).toLocaleDateString('fr-FR');
+                console.log(`Displaying ${limit} unique articles`);
+
+                for (let i = 0; i < limit; i++) {
+                    const item = uniqueItems[i];
+                    const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('fr-FR') : "N/A";
+
                     const div = document.createElement('div');
                     div.className = 'm-rss-item';
-
                     div.innerHTML = `
-                        <span class="m-rss-date">${date} // OP_LOG</span>
-                        <a href="${art.link}" target="_blank" class="m-rss-title">${art.title}</a>
+                        <span class="m-rss-date">${date} // TECH_SIG</span>
+                        <a href="${item.link}" target="_blank" class="m-rss-title">${item.cleanTitle}</a>
                     `;
                     rssContainer.appendChild(div);
 
-                    // Staggered entry animation when generated
                     gsap.fromTo(div,
                         { opacity: 0, x: -20 },
-                        { opacity: 1, x: 0, duration: 0.8, delay: i * 0.15, ease: "power2.out" }
+                        { opacity: 1, x: 0, duration: 0.8, delay: i * 0.1, ease: "power2.out" }
                     );
-                });
+                }
+                console.log('✓ RSS feed loaded successfully');
             } else {
-                rssContainer.innerHTML = '<div class="m-loading">DATA CORRUPTED_</div>';
+                console.warn('No items found');
+                rssContainer.innerHTML = '<div class="m-loading">SIGNAL EMPTY_ RECONFIGURING...</div>';
             }
         } catch (e) {
-            rssContainer.innerHTML = '<div class="m-loading">SIGNAL LOST_</div>';
+            console.error('RSS Fetch critical error:', e);
+            rssContainer.innerHTML = `
+                <div class="m-loading">SIGNAL INTERRUPTED_</div>
+                <div style="color: #888; font-size: 0.75rem; margin-top: 10px;">
+                    Erreur de connexion. Vérifiez la console (F12) pour plus de détails.
+                </div>
+            `;
         }
     }
 
