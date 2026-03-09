@@ -284,6 +284,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- FIX SCROLL IN 3D CONTEXT ---
+    // Wheel events can miss .scrollable-content in a CSS 3D scene,
+    // so we manually route them to the active face's scrollable area.
+    document.addEventListener('wheel', (e) => {
+        const activeFace = document.querySelector('.face.active');
+        if (!activeFace) return;
+        const scrollable = activeFace.querySelector('.scrollable-content');
+        if (!scrollable) return;
+
+        const rect = activeFace.getBoundingClientRect();
+        if (e.clientX >= rect.left && e.clientX <= rect.right &&
+            e.clientY >= rect.top && e.clientY <= rect.bottom) {
+            scrollable.scrollTop += e.deltaY;
+            e.preventDefault();
+        }
+    }, { passive: false });
+
     // --- KEYBOARD NAVIGATION ---
     document.addEventListener('keydown', (e) => {
         if (projectModal.classList.contains('open')) {
