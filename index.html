@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.L.K // THE MONOLITH</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Unicons & Bold Fonts -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;700&display=swap"
         rel="stylesheet">
@@ -17,11 +16,128 @@
 
     <!-- Environment lighting & noise -->
     <div id="atmosphere"></div>
+    <!-- Particle field -->
+    <canvas id="particles"></canvas>
+
+    <!-- HUD Side Panels -->
+    <aside class="hud-panel hud-left" id="hudLeft">
+        <div class="hud-section" data-for="front">
+            <div class="hud-header">PROFIL</div>
+            <div class="hud-divider"></div>
+            <div class="hud-row">
+                <span class="hud-label">Localisation</span>
+                <span class="hud-value">Paris, France</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Formation</span>
+                <span class="hud-value">BTS SIO SLAM</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Lycée</span>
+                <span class="hud-value">Louis Armand</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Statut</span>
+                <span class="hud-value gold">Étudiant</span>
+            </div>
+        </div>
+        <div class="hud-section" data-for="right">
+            <div class="hud-header">PARCOURS</div>
+            <div class="hud-divider"></div>
+            <div class="hud-stat">
+                <span class="hud-stat-number">3</span>
+                <span class="hud-stat-label">Expériences</span>
+            </div>
+            <div class="hud-stat">
+                <span class="hud-stat-number">+9</span>
+                <span class="hud-stat-label">Semaines en entreprise</span>
+            </div>
+            <div class="hud-divider"></div>
+            <div class="hud-row">
+                <span class="hud-label">Secteurs</span>
+                <span class="hud-value">Santé, Jeux, IT</span>
+            </div>
+        </div>
+        <div class="hud-section" data-for="back">
+            <div class="hud-header">PROJETS</div>
+            <div class="hud-divider"></div>
+            <div class="hud-stat">
+                <span class="hud-stat-number">3</span>
+                <span class="hud-stat-label">Réalisations</span>
+            </div>
+            <div class="hud-stat">
+                <span class="hud-stat-number">6+</span>
+                <span class="hud-stat-label">Technologies</span>
+            </div>
+            <div class="hud-divider"></div>
+            <div class="hud-row">
+                <span class="hud-label">Types</span>
+                <span class="hud-value">Web & Desktop</span>
+            </div>
+        </div>
+        <div class="hud-section" data-for="left">
+            <div class="hud-header">MÉTHODOLOGIE</div>
+            <div class="hud-divider"></div>
+            <div class="hud-item"><i class="uil uil-bell"></i> Google Alerts ciblés</div>
+            <div class="hud-item"><i class="uil uil-rss"></i> Flux RSS automatisés</div>
+            <div class="hud-item"><i class="uil uil-filter"></i> Curation & synthèse</div>
+        </div>
+    </aside>
+
+    <aside class="hud-panel hud-right" id="hudRight">
+        <div class="hud-section" data-for="front">
+            <div class="hud-header">STACK</div>
+            <div class="hud-divider"></div>
+            <div class="hud-row">
+                <span class="hud-label">Frontend</span>
+                <span class="hud-value">HTML CSS JS</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Backend</span>
+                <span class="hud-value">PHP Python Flask</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Desktop</span>
+                <span class="hud-value">C# .NET</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Database</span>
+                <span class="hud-value">MySQL</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Outils</span>
+                <span class="hud-value">Git Figma</span>
+            </div>
+        </div>
+        <div class="hud-section" data-for="right">
+            <div class="hud-header">ACQUIS</div>
+            <div class="hud-divider"></div>
+            <div class="hud-item"><i class="uil uil-server"></i> API REST & Flask</div>
+            <div class="hud-item"><i class="uil uil-lock"></i> Sécurité JWT / CORS</div>
+            <div class="hud-item"><i class="uil uil-palette"></i> Design UI/UX (Figma)</div>
+            <div class="hud-item"><i class="uil uil-sync"></i> Méthode Agile</div>
+            <div class="hud-item"><i class="uil uil-wrench"></i> Support IT</div>
+        </div>
+        <div class="hud-section" data-for="back">
+            <div class="hud-header">EXPLORER</div>
+            <div class="hud-divider"></div>
+            <div class="hud-hint">Cliquez sur un projet pour voir les screenshots et accéder à la démo.</div>
+        </div>
+        <div class="hud-section" data-for="left">
+            <div class="hud-header">SUJETS SURVEILLÉS</div>
+            <div class="hud-divider"></div>
+            <div class="hud-tag">DLSS (NVIDIA)</div>
+            <div class="hud-tag">FSR (AMD)</div>
+            <div class="hud-tag">XeSS (Intel)</div>
+            <div class="hud-tag">Ray Tracing</div>
+            <div class="hud-tag">Path Tracing</div>
+        </div>
+    </aside>
 
     <main class="scene">
 
         <!-- Instructional text -->
-        <div class="instructions">DRAG TO ROTATE // CLICK FACES TO REVEAL</div>
+        <div class="instructions">DRAG TO ROTATE // ARROW KEYS // CLICK FACES TO REVEAL</div>
 
         <!-- The 3D CSS Monolith -->
         <div class="monolith-wrapper">
@@ -33,7 +149,7 @@
                         <div class="m-header">I. IDENTITÉ</div>
                         <div class="scrollable-content">
                             <h1 class="massive-text">MARKO<br>LE COMTE<br>KOLAK</h1>
-                            <p class="role-text" style="color:var(--gold); font-size: 0.85rem; margin-bottom: 20px;">
+                            <p class="role-text">
                                 Créateur d'expériences numériques innovantes. Passionné par le code, le design et les
                                 technologies qui transforment le web.</p>
                             <div class="m-divider"></div>
@@ -78,7 +194,7 @@
                     </div>
                 </div>
 
-                <!-- RIGHT FACE: EXPERIENCES -->
+                <!-- RIGHT FACE: EXPÉRIENCES -->
                 <div class="face f-right" data-face="right">
                     <div class="content-wrapper">
                         <div class="m-header">II. EXPÉRIENCE</div>
@@ -90,31 +206,73 @@
                                 <p class="m-desc">Conception et développement du site vitrine pour le jeu de société "La
                                     Dictée Géante" (Figma, HTML/CSS/JS). Création de la plateforme événementielle "La
                                     Dictée des Voisins" (Inscriptions, Dashboard admin).</p>
-                                <span class="m-tag" style="margin-top:10px;">UI/UX Design • Intégration Responsive •
-                                    Méthode Agile • Git</span>
+                                <span class="m-tag" style="margin-top:10px;">UI/UX Design · Intégration Responsive ·
+                                    Méthode Agile · Git</span>
+                                <div class="project-showcase">
+                                    <div class="showcase-thumb">
+                                        <i class="uil uil-image-v"></i>
+                                        <span>Aperçu à venir</span>
+                                    </div>
+                                    <div class="showcase-actions">
+                                        <button class="btn-showcase btn-screens" data-project="dictee-geante">
+                                            <i class="uil uil-eye"></i> Screens
+                                        </button>
+                                        <a href="#" class="btn-showcase btn-go" target="_blank">
+                                            <i class="uil uil-external-link-alt"></i> Projet
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="m-item">
                                 <div class="m-year">25</div>
                                 <h3 class="m-title">Hôpital E. Georges-Pompidou (AP-HP)</h3>
                                 <span class="m-tag">19 mai au 04 juillet 2025 (7 semaines)</span>
-                                <p class="m-desc">Stage autour d’un chatbot médical interne. Cadrage fonctionnel avec
-                                    les équipes de soins. Conception d’une architecture Flask/API REST. Sécurisation par
-                                    JWT et CORS. Mise en place d’un flux d’ingestion documentaire (base de
-                                    connaissances). Développement d’interface web et déploiement Nginx (RGPD).</p>
-                                <span class="m-tag" style="margin-top:10px;">Python (Flask) • API REST • JWT •
+                                <p class="m-desc">Stage autour d'un chatbot médical interne. Cadrage fonctionnel avec
+                                    les équipes de soins. Conception d'une architecture Flask/API REST. Sécurisation par
+                                    JWT et CORS. Mise en place d'un flux d'ingestion documentaire (base de
+                                    connaissances). Développement d'interface web et déploiement Nginx (RGPD).</p>
+                                <span class="m-tag" style="margin-top:10px;">Python (Flask) · API REST · JWT ·
                                     RGPD</span>
+                                <div class="project-showcase">
+                                    <div class="showcase-thumb">
+                                        <i class="uil uil-image-v"></i>
+                                        <span>Aperçu à venir</span>
+                                    </div>
+                                    <div class="showcase-actions">
+                                        <button class="btn-showcase btn-screens" data-project="hopital-pompidou">
+                                            <i class="uil uil-eye"></i> Screens
+                                        </button>
+                                        <a href="#" class="btn-showcase btn-go" target="_blank">
+                                            <i class="uil uil-external-link-alt"></i> Projet
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="m-item">
                                 <div class="m-year">23</div>
-                                <h3 class="m-title">RC-Group • Service Informatique</h3>
+                                <h3 class="m-title">RC-Group · Service Informatique</h3>
                                 <span class="m-tag">04 déc au 15 déc 2023 (2 semaines)</span>
                                 <p class="m-desc">Installation et configuration d'équipements informatiques. Support
                                     technique et résolution d'incidents logiciels et matériels. Maintenance préventive
                                     et optimisation du parc informatique. Documentation des interventions.</p>
-                                <span class="m-tag" style="margin-top:10px;">Support IT • Maintenance • Dépannage •
+                                <span class="m-tag" style="margin-top:10px;">Support IT · Maintenance · Dépannage ·
                                     Configuration</span>
+                                <div class="project-showcase">
+                                    <div class="showcase-thumb">
+                                        <i class="uil uil-image-v"></i>
+                                        <span>Aperçu à venir</span>
+                                    </div>
+                                    <div class="showcase-actions">
+                                        <button class="btn-showcase btn-screens" data-project="rc-group">
+                                            <i class="uil uil-eye"></i> Screens
+                                        </button>
+                                        <a href="#" class="btn-showcase btn-go" target="_blank">
+                                            <i class="uil uil-external-link-alt"></i> Projet
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -126,27 +284,63 @@
                         <div class="m-header">III. RÉALISATIONS</div>
                         <div class="scrollable-content m-grid"
                             style="align-items: stretch; justify-content: flex-start; padding-bottom: 20px;">
-                            <div class="m-card">
+                            <div class="m-card" data-project="jeu-tir">
                                 <h3>Jeu de Tir Interactif</h3>
-                                <span class="m-tag">HTML5 • CSS3 • JavaScript</span>
+                                <span class="m-tag">HTML5 · CSS3 · JavaScript</span>
                                 <p>Développement d'un jeu de tir interactif en HTML, CSS et JavaScript. Le jeu permet de
                                     déplacer une arme de gauche à droite pour tirer sur une cible fixe à l'aide d'un
                                     bouton dédié, avec une gestion visuelle des projectiles et de l'arme via des images
                                     intégrées.</p>
+                                <div class="showcase-thumb showcase-thumb-sm">
+                                    <i class="uil uil-image-v"></i>
+                                    <span>Aperçu à venir</span>
+                                </div>
+                                <div class="showcase-actions">
+                                    <button class="btn-showcase btn-screens" data-project="jeu-tir">
+                                        <i class="uil uil-eye"></i> Screens
+                                    </button>
+                                    <a href="#" class="btn-showcase btn-go" target="_blank">
+                                        <i class="uil uil-external-link-alt"></i> Projet
+                                    </a>
+                                </div>
                             </div>
-                            <div class="m-card">
-                                <h3>💊 PharmaSI</h3>
-                                <span class="m-tag">C# • .NET • MySQL • WinForms</span>
+                            <div class="m-card" data-project="pharmasi">
+                                <h3>PharmaSI</h3>
+                                <span class="m-tag">C# · .NET · MySQL · WinForms</span>
                                 <p>Application Windows de gestion de rapports de visite pour laboratoires
                                     pharmaceutiques. Gestion sécurisée des données (Hashage, prévention des Injections
                                     SQL) et système d'accès par rôles (Visiteur, Délégué, Responsable).</p>
+                                <div class="showcase-thumb showcase-thumb-sm">
+                                    <i class="uil uil-image-v"></i>
+                                    <span>Aperçu à venir</span>
+                                </div>
+                                <div class="showcase-actions">
+                                    <button class="btn-showcase btn-screens" data-project="pharmasi">
+                                        <i class="uil uil-eye"></i> Screens
+                                    </button>
+                                    <a href="#" class="btn-showcase btn-go" target="_blank">
+                                        <i class="uil uil-external-link-alt"></i> Projet
+                                    </a>
+                                </div>
                             </div>
-                            <div class="m-card">
-                                <h3>🛒 Gestion Supermarché</h3>
-                                <span class="m-tag">PHP • SQL • HTML/CSS</span>
+                            <div class="m-card" data-project="supermarche">
+                                <h3>Gestion Supermarché</h3>
+                                <span class="m-tag">PHP · SQL · HTML/CSS</span>
                                 <p>Développement d'une application web pour la gestion de stocks et de produits d'un
                                     supermarché. Opérations CRUD complètes, authentification et base de données
                                     relationnelle.</p>
+                                <div class="showcase-thumb showcase-thumb-sm">
+                                    <i class="uil uil-image-v"></i>
+                                    <span>Aperçu à venir</span>
+                                </div>
+                                <div class="showcase-actions">
+                                    <button class="btn-showcase btn-screens" data-project="supermarche">
+                                        <i class="uil uil-eye"></i> Screens
+                                    </button>
+                                    <a href="#" class="btn-showcase btn-go" target="_blank">
+                                        <i class="uil uil-external-link-alt"></i> Projet
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -185,7 +379,7 @@
                     </div>
                 </div>
 
-                <!-- TOP & BOTTOM CAPS (For true 3D shape) -->
+                <!-- TOP & BOTTOM CAPS -->
                 <div class="face f-top"></div>
                 <div class="face f-bottom"></div>
 
@@ -193,6 +387,29 @@
         </div>
 
     </main>
+
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <button class="modal-close"><i class="uil uil-times"></i></button>
+            <div class="modal-gallery">
+                <div class="gallery-empty">
+                    <i class="uil uil-images"></i>
+                    <p>Screenshots à venir</p>
+                    <span>Les captures d'écran seront ajoutées prochainement</span>
+                </div>
+            </div>
+            <div class="modal-info">
+                <h2 id="modalTitle"></h2>
+                <div id="modalTags" class="modal-tags"></div>
+                <p id="modalDesc"></p>
+                <a href="#" id="modalLink" class="btn-showcase btn-go btn-go-lg" target="_blank">
+                    <i class="uil uil-external-link-alt"></i> Accéder au projet
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
