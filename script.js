@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: 'Stage autour du chatbot médical "Georges" pour l\'HEGP. Développement d\'une architecture Flask + FastAPI, frontend Vue 3, base MongoDB. Sécurisation par JWT et CORS. Interface web responsive et déploiement Nginx (RGPD).',
             url: 'https://github.com/horizonmoine/georges-medical-chatbot',
             downloadUrls: [
-                { label: 'Rapport de stage', url: 'Rapport de stage APHP.docx' }
+                { label: 'Rapport de stage', url: 'Rapport de stage APHP.pdf' }
             ],
             screenshots: [
                 'assets/screenshots/georges_chatbot_1.png'
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: 'Application Windows de gestion de rapports de visite pour laboratoires pharmaceutiques. Gestion sécurisée des données (Hashage, prévention des Injections SQL) et système d\'accès par rôles (Visiteur, Délégué, Responsable).',
             url: 'https://github.com/horizonmoine/sprint3',
             downloadUrls: [
-                { label: 'Manuel Utilisateur', url: 'Manuel Utilisateur - Application PharmaSI v6.docx' }
+                { label: 'Manuel Utilisateur', url: 'Manuel Utilisateur - Application PharmaSI v6.pdf' }
             ],
             screenshots: [
                 'assets/screenshots/pharmasi_1.png',
