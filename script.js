@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             tags: 'Python (Flask/FastAPI) · Vue 3 · MongoDB · JWT · RGPD',
             desc: 'Stage autour du chatbot médical "Georges" pour l\'HEGP. Développement d\'une architecture Flask + FastAPI, frontend Vue 3, base MongoDB. Sécurisation par JWT et CORS. Interface web responsive et déploiement Nginx (RGPD).',
             url: 'https://github.com/horizonmoine/georges-medical-chatbot',
+            liveUrls: [
+                { label: 'Tester Georges (Mock)', url: 'https://georges-mock.vercel.app' }
+            ],
             downloadUrls: [
                 { label: 'Rapport de stage', url: 'Rapport de stage APHP.pdf' }
             ],
