@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { label: 'Site Vitrine', url: 'https://monsieur-dictee.vercel.app' },
                 { label: 'Dictée des Voisins', url: 'https://dictee-voisins.vercel.app' }
             ],
+            downloadUrls: [
+                { label: 'Rapport de stage', url: 'rapport de stage dictée géante.pdf' }
+            ],
             screenshots: [
                 'assets/screenshots/monsieur_dictee_1.png',
                 'assets/screenshots/monsieur_dictee_2.png',
@@ -31,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             tags: 'Python (Flask/FastAPI) · Vue 3 · MongoDB · JWT · RGPD',
             desc: 'Stage autour du chatbot médical "Georges" pour l\'HEGP. Développement d\'une architecture Flask + FastAPI, frontend Vue 3, base MongoDB. Sécurisation par JWT et CORS. Interface web responsive et déploiement Nginx (RGPD).',
             url: 'https://github.com/horizonmoine/georges-medical-chatbot',
+            downloadUrls: [
+                { label: 'Rapport de stage', url: 'Rapport de stage APHP.docx' }
+            ],
             screenshots: [
                 'assets/screenshots/georges_chatbot_1.png'
             ]
@@ -52,13 +58,24 @@ document.addEventListener('DOMContentLoaded', () => {
             tags: 'C# · .NET · MySQL · WinForms',
             desc: 'Application Windows de gestion de rapports de visite pour laboratoires pharmaceutiques. Gestion sécurisée des données (Hashage, prévention des Injections SQL) et système d\'accès par rôles (Visiteur, Délégué, Responsable).',
             url: 'https://github.com/horizonmoine/sprint3',
-            screenshots: []
+            downloadUrls: [
+                { label: 'Manuel Utilisateur', url: 'Manuel Utilisateur - Application PharmaSI v6.docx' }
+            ],
+            screenshots: [
+                'assets/screenshots/pharmasi_1.png',
+                'assets/screenshots/pharmasi_2.png',
+                'assets/screenshots/pharmasi_3.png',
+                'assets/screenshots/pharmasi_4.png'
+            ]
         },
         'supermarche': {
             title: 'Gestion Supermarché',
             tags: 'PHP · MySQL · HTML/CSS',
             desc: 'Application web de gestion d\'un supermarché avec authentification, gestion de panier, génération de factures et panneau d\'administration complet. Architecture MVC simplifiée avec PDO.',
             url: 'https://github.com/Flaimeur/Supermarche',
+            downloadUrls: [
+                { label: 'Documentation technique', url: 'documentation-supermarcher.pdf' }
+            ],
             screenshots: [
                 'assets/screenshots/supermarche_dashboard.png',
                 'assets/screenshots/supermarche_login.png',
@@ -485,6 +502,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     a.className = 'btn-showcase btn-go btn-go-lg';
                     a.style.marginLeft = '10px';
                     a.innerHTML = `<i class="uil uil-external-link-alt"></i> ${l.label}`;
+                    linksContainer.appendChild(a);
+                });
+            }
+            if (data.downloadUrls && data.downloadUrls.length > 0) {
+                data.downloadUrls.forEach(l => {
+                    const a = document.createElement('a');
+                    a.href = l.url;
+                    a.target = '_blank';
+                    a.className = 'btn-showcase btn-go btn-go-lg';
+                    a.style.marginLeft = '10px';
+                    a.innerHTML = `<i class="uil uil-file-download-alt"></i> ${l.label}`;
                     linksContainer.appendChild(a);
                 });
             }
