@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css_cible.css"/>
+    <title>Jeu de Tir Interactif</title>
+</head>
+<body>
+
+<!-- UI Ajoutée pour le jeu (Score, Vent) -->
+<div id="game-ui">
+    <div id="score-container">Score : <span id="score">0</span> | Tirs : <span id="tirs">0</span></div>
+    <div id="wind-container">Vent : <span id="wind">0</span> <span>km/h</span></div>
+</div>
+    
+<div class="cible">
+    <div id="moncercle9" data-points="10" class="ring">10
+        <div id="moncercle8" data-points="9" class="ring">9
+            <div id="moncercle7" data-points="8" class="ring">8
+                <div id="moncercle6" data-points="7" class="ring">7
+                    <div id="moncercle5" data-points="6" class="ring">6
+                        <div id="moncercle4" data-points="5" class="ring">5
+                            <div id="moncercle3" data-points="4" class="ring">4
+                                <div id="moncercle2" data-points="3" class="ring">3
+                                    <div id="moncercle1" data-points="2" class="ring">2
+                                        <div id="moncercle" data-points="1" class="ring">1
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="opacite">
+    <h1 class="titre">BOUM DIEGO</h1> 
+    <button class="boutton" onclick="location.href='pages/se_connecter.html'">Se connecter</button>
+</div>
+
+<!-- Game Entities from Etape 6 -->
+<img id="cannon" src="image/cannon.png" alt="canon" />
+<img id="boulet" src="image/boulet.png" alt="boulet" />
+<div id="wind-system">
+    <img id="rose" src="image/rose_des_vents.png" alt="rose des vents" />
+    <img id="fleche" src="image/nouvelle_fleche.svg" alt="fleche" />
+    <!-- Bouton pour contrôler le vent -->
+    <button id="btn-wind-control" class="boutton" style="position:absolute; bottom:-50px; left:50%; transform:translateX(-50%); width:120px; font-size:12px; z-index: 30;">STOP VENT</button>
+</div>
+
+<!-- Controls -->
+<div id="controls">
+    <button id="Bouton_deplacement_gauche" class="boutton"><<</button>
+    <button id="Bouton_fire" class="boutton">FIRE</button>
+    <button id="Bouton_deplacement_droite" class="boutton">>></button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

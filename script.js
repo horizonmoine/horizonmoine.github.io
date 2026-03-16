@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hudRight = document.getElementById('hudRight');
     const projectModal = document.getElementById('projectModal');
 
-    const MONO_HALF = 260;
+    const MONO_HALF = 400; // was 260
 
     // --- PROJECT DATA (fill in URLs and screenshots later) ---
     const projectData = {
@@ -14,43 +14,70 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'La Dictée Géante',
             tags: 'UI/UX Design · Intégration Responsive · Méthode Agile · Git',
             desc: 'Conception et développement du site vitrine pour le jeu de société "La Dictée Géante" (Figma, HTML/CSS/JS). Création de la plateforme événementielle "La Dictée des Voisins" (Inscriptions, Dashboard admin).',
-            url: '#',
-            screenshots: []
+            url: 'https://github.com/Flaimeur/MONSIEURDICTEE',
+            liveUrls: [
+                { label: 'Site Vitrine', url: 'https://monsieur-dictee.vercel.app' },
+                { label: 'Dictée des Voisins', url: 'https://dictee-voisins.vercel.app' }
+            ],
+            screenshots: [
+                'assets/screenshots/monsieur_dictee_1.png',
+                'assets/screenshots/monsieur_dictee_2.png',
+                'assets/screenshots/dictee_voisins_1.png',
+                'assets/screenshots/dictee_voisins_2.png'
+            ]
         },
         'hopital-pompidou': {
             title: 'Hôpital E. Georges-Pompidou (AP-HP)',
-            tags: 'Python (Flask) · API REST · JWT · RGPD',
-            desc: 'Stage autour d\'un chatbot médical interne. Cadrage fonctionnel avec les équipes de soins. Conception d\'une architecture Flask/API REST. Sécurisation par JWT et CORS. Déploiement Nginx (RGPD).',
-            url: '#',
-            screenshots: []
-        },
-        'rc-group': {
-            title: 'RC-Group · Service Informatique',
-            tags: 'Support IT · Maintenance · Dépannage · Configuration',
-            desc: 'Installation et configuration d\'équipements informatiques. Support technique et résolution d\'incidents logiciels et matériels. Maintenance préventive et optimisation du parc informatique.',
-            url: '#',
-            screenshots: []
+            tags: 'Python (Flask/FastAPI) · Vue 3 · MongoDB · JWT · RGPD',
+            desc: 'Stage autour du chatbot médical "Georges" pour l\'HEGP. Développement d\'une architecture Flask + FastAPI, frontend Vue 3, base MongoDB. Sécurisation par JWT et CORS. Interface web responsive et déploiement Nginx (RGPD).',
+            url: 'https://github.com/horizonmoine/georges-medical-chatbot',
+            screenshots: [
+                'assets/screenshots/georges_chatbot_1.png'
+            ]
         },
         'jeu-tir': {
             title: 'Jeu de Tir Interactif',
             tags: 'HTML5 · CSS3 · JavaScript',
-            desc: 'Développement d\'un jeu de tir interactif en HTML, CSS et JavaScript. Déplacement d\'une arme, tir sur cible fixe, gestion visuelle des projectiles.',
-            url: '#',
-            screenshots: []
+            desc: 'Jeu de tir interactif avec canon mobile, système de vent dynamique (rose des vents), scoring par zone et gestion de login. Déplacement latéral du canon et calcul de trajectoire des projectiles.',
+            url: 'https://github.com/horizonmoine/jeu-tir',
+            liveUrls: [
+                { label: 'Jouer en ligne', url: 'projects/jeu-tir/index.html' }
+            ],
+            screenshots: [
+                'assets/screenshots/jeu_tir_1.png'
+            ]
         },
         'pharmasi': {
             title: 'PharmaSI',
             tags: 'C# · .NET · MySQL · WinForms',
-            desc: 'Application Windows de gestion de rapports de visite pour laboratoires pharmaceutiques. Gestion sécurisée des données et système d\'accès par rôles.',
-            url: '#',
+            desc: 'Application Windows de gestion de rapports de visite pour laboratoires pharmaceutiques. Gestion sécurisée des données (Hashage, prévention des Injections SQL) et système d\'accès par rôles (Visiteur, Délégué, Responsable).',
+            url: 'https://github.com/horizonmoine/sprint3',
             screenshots: []
         },
         'supermarche': {
             title: 'Gestion Supermarché',
-            tags: 'PHP · SQL · HTML/CSS',
-            desc: 'Application web pour la gestion de stocks et de produits. Opérations CRUD complètes, authentification et base de données relationnelle.',
-            url: '#',
-            screenshots: []
+            tags: 'PHP · MySQL · HTML/CSS',
+            desc: 'Application web de gestion d\'un supermarché avec authentification, gestion de panier, génération de factures et panneau d\'administration complet. Architecture MVC simplifiée avec PDO.',
+            url: 'https://github.com/Flaimeur/Supermarche',
+            screenshots: [
+                'assets/screenshots/supermarche_dashboard.png',
+                'assets/screenshots/supermarche_login.png',
+                'assets/screenshots/supermarche_produits.png',
+                'assets/screenshots/supermarche_facture.png'
+            ]
+        },
+        'bballcoach-ai': {
+            title: 'BballCoach AI',
+            tags: 'Next.js · TypeScript · Supabase · IA',
+            desc: 'Application web de coaching basketball assistée par IA. Tracking 3D en temps réel, analyse biomécanique vidéo, comparaison avec joueurs pro, et exercices personnalisés.',
+            url: 'https://github.com/horizonmoine/bballcoach-ai-v2-dev',
+            liveUrls: [
+                { label: 'Tester l\'appli', url: 'https://bballcoach-ai-v2.vercel.app' }
+            ],
+            screenshots: [
+                'assets/screenshots/basket_ai_1.png',
+                'assets/screenshots/basket_ai_2.png'
+            ]
         }
     };
 
@@ -93,17 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const particles = [];
-        const PARTICLE_COUNT = 55;
+        const PARTICLE_COUNT = 150; // Densify the background
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
             particles.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
-                vx: (Math.random() - 0.5) * 0.25,
-                vy: (Math.random() - 0.5) * 0.25,
-                size: Math.random() * 1.5 + 0.5,
-                baseOpacity: Math.random() * 0.35 + 0.08,
-                isGold: Math.random() > 0.75,
+                vx: (Math.random() - 0.5) * 0.35,
+                vy: (Math.random() - 0.5) * 0.35,
+                size: Math.random() * 2 + 0.5,
+                baseOpacity: Math.random() * 0.4 + 0.1,
+                isGold: Math.random() > 0.82,
                 phase: Math.random() * Math.PI * 2
             });
         }
@@ -115,28 +142,62 @@ document.addEventListener('DOMContentLoaded', () => {
             const parallaxY = (mouseY - canvas.height / 2) * 0.015;
             const time = Date.now() * 0.001;
 
+            // Compute positions
             particles.forEach(p => {
                 p.x += p.vx;
                 p.y += p.vy;
 
-                if (p.x < -10) p.x = canvas.width + 10;
-                if (p.x > canvas.width + 10) p.x = -10;
-                if (p.y < -10) p.y = canvas.height + 10;
-                if (p.y > canvas.height + 10) p.y = -10;
+                if (p.x < -20) p.x = canvas.width + 20;
+                if (p.x > canvas.width + 20) p.x = -20;
+                if (p.y < -20) p.y = canvas.height + 20;
+                if (p.y > canvas.height + 20) p.y = -20;
 
-                const drawX = p.x + parallaxX * (p.size * 2);
-                const drawY = p.y + parallaxY * (p.size * 2);
+                p.drawX = p.x + parallaxX * (p.size * 2);
+                p.drawY = p.y + parallaxY * (p.size * 2);
+            });
 
-                const pulse = Math.sin(time + p.phase) * 0.15;
-                const opacity = Math.max(0.03, p.baseOpacity + pulse);
+            // Draw constellation lines
+            ctx.lineWidth = 0.6;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].drawX - particles[j].drawX;
+                    const dy = particles[i].drawY - particles[j].drawY;
+                    const distSq = dx * dx + dy * dy;
+
+                    if (distSq < 15000) {
+                        const alpha = (1 - distSq / 15000) * 0.15;
+                        ctx.beginPath();
+                        if (particles[i].isGold || particles[j].isGold) {
+                            ctx.strokeStyle = `rgba(223, 160, 76, ${alpha})`;
+                        } else {
+                            ctx.strokeStyle = `rgba(200, 190, 220, ${alpha})`;
+                        }
+                        ctx.moveTo(particles[i].drawX, particles[i].drawY);
+                        ctx.lineTo(particles[j].drawX, particles[j].drawY);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw particles
+            particles.forEach(p => {
+                const pulse = Math.sin(time + p.phase) * 0.2;
+                const opacity = Math.max(0.05, p.baseOpacity + pulse);
+
+                if (p.isGold) {
+                    ctx.beginPath();
+                    ctx.arc(p.drawX, p.drawY, p.size * 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(223, 160, 76, ${opacity * 0.2})`;
+                    ctx.fill();
+                }
 
                 ctx.beginPath();
-                ctx.arc(drawX, drawY, p.size, 0, Math.PI * 2);
+                ctx.arc(p.drawX, p.drawY, p.size, 0, Math.PI * 2);
 
                 if (p.isGold) {
                     ctx.fillStyle = `rgba(223, 160, 76, ${opacity})`;
                 } else {
-                    ctx.fillStyle = `rgba(200, 190, 220, ${opacity * 0.5})`;
+                    ctx.fillStyle = `rgba(200, 190, 220, ${opacity * 0.7})`;
                 }
                 ctx.fill();
             });
@@ -308,12 +369,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         if (e.key === 'ArrowLeft') {
-            targetRotation.y -= 90;
+            targetRotation.y += 90;
             targetRotation.x = 0;
             updateActiveFace(targetRotation.y);
         }
         if (e.key === 'ArrowRight') {
-            targetRotation.y += 90;
+            targetRotation.y -= 90;
             targetRotation.x = 0;
             updateActiveFace(targetRotation.y);
         }
@@ -404,20 +465,49 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modalTags').innerHTML = `<span class="m-tag">${data.tags}</span>`;
 
         const modalLink = document.getElementById('modalLink');
+        modalLink.innerHTML = `<i class="uil uil-github"></i> Code source`;
         modalLink.href = data.url;
         if (data.url === '#') {
-            modalLink.style.opacity = '0.4';
-            modalLink.style.pointerEvents = 'none';
+            modalLink.style.display = 'none';
         } else {
-            modalLink.style.opacity = '1';
-            modalLink.style.pointerEvents = 'auto';
+            modalLink.style.display = 'inline-flex';
+        }
+
+        // Handle live links
+        const linksContainer = document.getElementById('modalLinksContainer');
+        if (linksContainer) {
+            linksContainer.innerHTML = '';
+            if (data.liveUrls && data.liveUrls.length > 0) {
+                data.liveUrls.forEach(l => {
+                    const a = document.createElement('a');
+                    a.href = l.url;
+                    a.target = '_blank';
+                    a.className = 'btn-showcase btn-go btn-go-lg';
+                    a.style.marginLeft = '10px';
+                    a.innerHTML = `<i class="uil uil-external-link-alt"></i> ${l.label}`;
+                    linksContainer.appendChild(a);
+                });
+            }
+            linksContainer.appendChild(modalLink);
         }
 
         const gallery = projectModal.querySelector('.modal-gallery');
         if (data.screenshots && data.screenshots.length > 0) {
             gallery.innerHTML = data.screenshots.map(src =>
-                `<img src="${src}" alt="${data.title}" style="max-width:100%; max-height:100%; object-fit:contain;">`
+                `<img class="gallery-img" src="${src}" alt="${data.title}" style="max-height:90%; border-radius:8px; cursor:zoom-in; object-fit:contain; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">`
             ).join('');
+
+            const images = gallery.querySelectorAll('.gallery-img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    const lightbox = document.getElementById('lightboxModal');
+                    const lightboxImg = document.getElementById('lightboxImg');
+                    if (lightbox && lightboxImg) {
+                        lightboxImg.src = e.target.src;
+                        lightbox.classList.add('open');
+                    }
+                });
+            });
         } else {
             gallery.innerHTML = `
                 <div class="gallery-empty">

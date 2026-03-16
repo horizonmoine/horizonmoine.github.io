@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m http.server:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAmélioration de la veille technologique avec Google Alerts ciblés\n\n- Optimisation des requêtes RSS pour cibler spécifiquement DLSS, FSR, XeSS\n- Ajout de requêtes sur Ray Tracing et Path Tracing\n- Système de fetch amélioré avec gestion d''erreur et délai anti-rate-limit\n- Passage de 1 à 5 requêtes ciblées pour meilleure couverture\n- Augmentation de la limite d''articles affichés \\(6 → 12\\)\n- Mise à jour de la description de veille pour refléter le focus technique\n\nTechnologies couvertes : DLSS \\(NVIDIA\\), FSR \\(AMD\\), XeSS \\(Intel\\), Ray Tracing, Path Tracing\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(gh api:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo view sickn33/antigravity-awesome-skills --json name,description,createdAt,updatedAt,stargazerCount,forkCount,isPrivate,licenseInfo,url)"
+    ]
+  }
+}

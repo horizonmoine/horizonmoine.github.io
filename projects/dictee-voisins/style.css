@@ -1,0 +1,75 @@
+:root {
+  --poster-blue: #00a4e4;
+  --poster-navy: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Personnalisation du surlignage */
+::selection {
+  background-color: var(--poster-blue);
+  color: #ffffff;
+}
+::-moz-selection {
+  background-color: var(--poster-blue);
+  color: #ffffff;
+}
+
+body {
+  font-family: "Plus+Jakarta+Sans", sans-serif;
+  background-color: #ffffff;
+  color: var(--poster-navy);
+}
+h1,
+h2,
+h3,
+.logo-font {
+  font-family: "Fredoka", sans-serif;
+}
+
+.bg-poster-blue {
+  background-color: var(--poster-blue);
+}
+.text-poster-blue {
+  color: var(--poster-blue);
+}
+.bg-poster-navy {
+  background-color: var(--poster-navy);
+}
+
+.hero-overlay {
+  background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.2));
+}
+
+.bunting {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+/* Logos partenaires */
+.partner-logo {
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.partner-logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.view-hidden {
+  display: none !important;
+}

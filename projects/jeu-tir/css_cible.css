@@ -1,0 +1,257 @@
+/* Cible d'origine (on ne change pas tes tailles ni bordures) */
+body{
+      background : url("../image/diego.jpg") fixed no-repeat center;
+      background-size: cover;
+      text-align: center;
+      z-index: 1;
+      margin: 0;
+      color: white;
+      font-family: Arial, sans-serif;
+}
+
+#moncercle{margin:auto;
+      background:#ff0000;
+      border-radius:50%;
+      width:50px;
+      height:50px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+#moncercle1{margin:auto;
+      background:#0400ff;
+      border-radius:50%;
+      width:100px;
+      height:100px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+#moncercle2{margin:auto;
+      background:#ff0000;
+      border-radius:50%;
+      width:150px;
+      height:150px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+#moncercle3{margin:auto; 
+      background:#0400ff;
+      border-radius:50%;
+      width:200px;
+      height:200px;
+      border:2px solid #000000; 
+      padding:5px;
+}
+
+#moncercle4{margin:auto;
+      background:#ff0000;
+      border-radius:50%;
+      width:250px;
+      height:250px;
+      border:2px solid #000000;
+      padding:5px; 
+}      
+#moncercle5{margin:auto;
+      background:#0400ff;
+      border-radius:50%;
+      width:300px;
+      height:300px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+#moncercle6{margin:auto;
+      background: #ff0000;
+      border-radius:50%;
+      width:350px;
+      height:350px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+#moncercle7{margin:auto;
+      background:#0400ff;
+      border-radius:50%;
+      width:400px;
+      height:400px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+#moncercle8{margin:auto;
+      background:#ff0000;
+      border-radius:50%;
+      width:450px;
+      height:450px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+#moncercle9{margin:auto;
+      background:#0400ff;
+      border-radius:50%;
+      width:500px;
+      height:500px;
+      border:2px solid #000000;
+      padding:5px; 
+}
+
+/* Modifié pour l'interaction JS */
+.ring {
+    cursor: crosshair;
+    user-select: none;
+    box-sizing: border-box; /* Garde la taille exacte sans deborder */
+}
+
+
+.se_connecter{
+      margin:auto;
+      margin-top: 30px;
+      padding: 10px;
+      border-radius: 30px;
+}
+
+/* Pour la page de connexion */
+.opacite-login {
+      background-image: url("../image/brique.jpg");
+      height: 250px;
+      width: 500px;
+      border-radius: 30px;
+      color: rgb(255, 255, 255);
+      position: absolute;
+      text-align: center;
+      opacity: 0.9;
+      left: 50%;
+      margin-left: -250px;
+      top: 100px;
+      border: #ff0000 2px solid;
+}
+
+.boutton {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: #ff0000;
+    color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.boutton:hover {
+    background-color: #aa0000;
+}
+
+
+/* Nouveaux styles pour notre interface de jeu */
+#game-ui {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px black;
+}
+
+#wind-container {
+    background: rgba(0,0,0,0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+#score-container {
+    background: rgba(0,0,0,0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+/* Bulle d'impact */
+.bullet-hole {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: black;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px rgba(255,255,255,0.5);
+    pointer-events: none; /* Pour pouvoir cliquer en dessous */
+    z-index: 100;
+}
+
+.miss-hole {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: 3px solid red;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+}
+.miss-hole::after {
+    content: "X";
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: -4px;
+    left: 1px;
+    font-size: 14px;
+}
+
+/* Styles pour Canon, Boulet et Rose des Vents */
+#cannon {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    z-index: 10;
+}
+
+#boulet {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 0px; /* Caché initialement */
+    z-index: 9;
+}
+
+#wind-system {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+}
+
+#rose {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+}
+
+#fleche {
+    position: absolute;
+    top: 7px;
+    left: 85px;
+    width: 30px;
+    height: 185px;
+    transform-origin: center center;
+    animation: tourne 2s linear infinite;
+}
+
+@keyframes tourne {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#controls {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 20;
+}

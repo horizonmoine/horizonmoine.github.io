@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Monsieur Dictée</title>
+    <meta
+      name="description"
+      content="Contactez Monsieur Dictée. Une question sur le jeu ou un défi à nous lancer ?"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="main-header">
+      <div class="container header-container">
+        <a href="index.html" class="logo">
+          <img
+            src="logo-sans-fond.png"
+            alt="Monsieur Dictée - L'orthographe devient un jeu"
+            class="logo-img"
+          />
+        </a>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html#concept">LE CONCEPT</a></li>
+            <li><a href="index.html#regles">RÈGLES</a></li>
+            <li><a href="index.html#essayer">ESSAYER LE</a></li>
+            <li><a href="contact.html" class="active">CONTACT</a></li>
+          </ul>
+        </nav>
+        <button
+          class="mobile-menu-toggle"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="contact-section" id="contact">
+        <div class="container contact-container">
+          <div class="contact-card">
+            <div class="contact-info">
+              <div class="chat-icon-wrapper-glow">
+                <span>💬</span>
+              </div>
+              <h2>ON PAPOTE ?</h2>
+              <p class="contact-intro">
+                UNE QUESTION SUR LE JEU OU UN DÉFI À NOUS LANCER ? ÉCRIVEZ-NOUS,
+                PROMIS ON NE CORRIGE PAS VOS FAUTES (ENFIN... PEUT-ÊTRE).
+              </p>
+
+              <div class="contact-box-dark">
+                <div class="box-icon-green">✉️</div>
+                <div class="box-content">
+                  <span class="label">EMAIL DIRECT</span>
+                  <span class="value text-green"
+                    >BONJOUR@MONSIEUR-DICTEE.FR</span
+                  >
+                </div>
+              </div>
+
+              <div class="contact-box-dark">
+                <div class="box-icon-green">🕒</div>
+                <div class="box-content">
+                  <span class="label">DÉLAI DE RÉPONSE</span>
+                  <span class="value">SOUS 48H EN GÉNÉRAL</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+              <form
+                action="https://formspree.io/f/xaqdwzdq"
+                method="POST"
+                id="contact-form"
+                class="contact-form"
+              >
+                <div class="form-group">
+                  <label>VOTRE NOM</label>
+                  <input
+                    type="text"
+                    name="nom"
+                    required
+                    class="form-control-dark"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>VOTRE EMAIL</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    class="form-control-dark"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>SUJET</label>
+                  <select name="sujet" class="form-control-dark">
+                    <option value="">CHOISIR UN SUJET...</option>
+                    <option value="question">Question</option>
+                    <option value="presse">Presse</option>
+                    <option value="partenariat">Partenariat</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>VOTRE MESSAGE</label>
+                  <textarea
+                    name="message"
+                    required
+                    class="form-control-dark"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  id="btn-submit"
+                  class="btn btn-green-glow"
+                >
+                  ENVOYER LE MESSAGE <span>➤</span>
+                </button>
+                <div
+                  id="form-status"
+                  style="
+                    margin-top: 15px;
+                    text-align: center;
+                    font-weight: bold;
+                  "
+                ></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="bg-decoration">@</div>
+        <div class="bg-decoration-right">?</div>
+        <div class="page-glow-left"></div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container footer-container">
+        <div class="footer-logo">
+          <a href="index.html">
+            <img
+              src="logo-sans-fond.png"
+              alt="Monsieur Dictée"
+              class="logo-img"
+            />
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="#">Mentions Légales</a>
+          <a href="#">CGV</a>
+          <a href="#">Politique de Confidentialité</a>
+        </div>
+        <div class="footer-social">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // --- 1. MENU MOBILE ---
+      const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+      const mainNav = document.querySelector(".main-nav");
+
+      if (mobileMenuToggle && mainNav) {
+        mobileMenuToggle.addEventListener("click", function () {
+          this.classList.toggle("active");
+          mainNav.classList.toggle("active");
+          this.setAttribute(
+            "aria-expanded",
+            this.classList.contains("active") ? "true" : "false",
+          );
+        });
+
+        mainNav.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            mobileMenuToggle.classList.remove("active");
+            mainNav.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+
+        document.addEventListener("click", e => {
+          if (
+            !mobileMenuToggle.contains(e.target) &&
+            !mainNav.contains(e.target)
+          ) {
+            mobileMenuToggle.classList.remove("active");
+            mainNav.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+
+      // --- 2. ENVOI DU FORMULAIRE (FORMSPREE) ---
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
+      const btn = document.getElementById("btn-submit");
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        btn.innerText = "ENVOI EN COURS...";
+        btn.disabled = true;
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+
+          if (response.ok) {
+            // On remplace le formulaire par un message de succès stylisé
+            form.innerHTML = `
+                        <div style="text-align: center; padding: 20px; color: #10b981;">
+                            <span style="font-size: 3rem;">✅</span>
+                            <h3 style="margin-top: 15px;">MESSAGE ENVOYÉ !</h3>
+                            <p style="color: #ccc; font-size: 0.9rem; margin-top: 10px;">
+                                Merci ! On vous répond sous 48h.
+                            </p>
+                        </div>`;
+          } else {
+            throw new Error();
+          }
+        } catch (error) {
+          status.innerHTML = "❌ ERREUR LORS DE L'ENVOI.";
+          status.style.color = "#ef4444";
+          btn.innerText = "RÉESSAYER ➤";
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -7,8 +7,8 @@
     --gold-bright: #f0b060;
     --font-massive: 'Anton', sans-serif;
     --font-read: 'Inter', sans-serif;
-    --mono-size: 520px;
-    --mono-half: 260px;
+    --mono-size: 800px;
+    --mono-half: 400px;
 
     /* Projector-friendly grays with subtle lavender warmth */
     --t-dim: #706a88;
@@ -454,7 +454,39 @@ body:active {
     font-size: 0.75rem;
     color: var(--t-dim);
     letter-spacing: 1px;
-    margin-top: 20px;
+    margin-top: 5px;
+}
+
+.tool-highlight {
+    background: rgba(223, 160, 76, 0.08);
+    border: 1px solid rgba(223, 160, 76, 0.3);
+    border-radius: 6px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tool-highlight i {
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+.tool-highlight h4 {
+    font-family: var(--font-massive);
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+
+.tool-highlight p {
+    font-size: 0.75rem;
+    color: var(--t-mid);
+    line-height: 1.3;
+    margin: 0;
 }
 
 .scrollable-content {
@@ -865,9 +897,59 @@ body:active {
     background: #080810;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 0 20px;
     border-bottom: 1px solid #1a1825;
     flex-shrink: 0;
+    overflow-x: auto;
+}
+
+/* LIGHTBOX MODAL */
+.lightbox-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.lightbox-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-modal img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--b-mid);
+    color: var(--t-mid);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lightbox-close:hover {
+    color: var(--gold);
+    border-color: var(--gold);
 }
 
 .gallery-empty {

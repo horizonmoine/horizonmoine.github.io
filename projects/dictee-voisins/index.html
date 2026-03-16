@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Dictée des Voisins - 30 Janvier 2026</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style></style>
+  </head>
+  <body class="antialiased">
+    <!-- Guirlande de fanions -->
+    <div class="bunting">
+      <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+        <path d="M0 0L30 40L60 0H0Z" fill="#fbbf24" />
+      </svg>
+      <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+        <path d="M0 0L30 40L60 0H0Z" fill="#ef4444" />
+      </svg>
+      <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+        <path d="M0 0L30 40L60 0H0Z" fill="#00a4e4" />
+      </svg>
+      <svg
+        width="60"
+        height="40"
+        viewBox="0 0 60 40"
+        fill="none"
+        class="hidden sm:block"
+      >
+        <path d="M0 0L30 40L60 0H0Z" fill="#10b981" />
+      </svg>
+      <svg
+        width="60"
+        height="40"
+        viewBox="0 0 60 40"
+        fill="none"
+        class="hidden md:block"
+      >
+        <path d="M0 0L30 40L60 0H0Z" fill="#8b5cf6" />
+      </svg>
+      <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+        <path d="M0 0L30 40L60 0H0Z" fill="#ef4444" />
+      </svg>
+      <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+        <path d="M0 0L30 40L60 0H0Z" fill="#00a4e4" />
+      </svg>
+    </div>
+
+    <!-- Header épuré -->
+    <header
+      class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 pt-4"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+          <a href="#" class="flex flex-col leading-none">
+            <span
+              class="logo-font text-xl text-poster-blue font-bold tracking-tight"
+              >La Dictée</span
+            >
+            <span
+              class="logo-font text-2xl text-poster-blue font-bold ml-3 -mt-1 uppercase"
+              >des voisins</span
+            >
+          </a>
+
+          <nav
+            class="hidden md:flex items-center space-x-10 text-sm font-bold text-slate-600"
+          >
+            <a href="#participer" class="hover:text-poster-blue transition"
+              >Participer</a
+            >
+            <a href="#quisommesnous" class="hover:text-poster-blue transition"
+              >Qui sommes-nous ?</a
+            >
+            <a href="#partenaires" class="hover:text-poster-blue transition"
+              >Partenaires</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-poster-blue transition text-poster-blue border-2 border-poster-blue px-5 py-2 rounded-full hover:bg-poster-blue hover:text-white transition-all"
+            >
+              Contact
+            </a>
+          </nav>
+
+          <button class="md:hidden text-poster-navy p-2">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      class="relative h-[550px] w-full overflow-hidden flex items-center"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=2000"
+        alt="Voisins attablés"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 hero-overlay"></div>
+
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 flex flex-col items-center text-center"
+      >
+        <div
+          class="inline-block bg-poster-blue text-white px-5 py-1.5 rounded-lg font-bold mb-6 shadow-lg rotate-[-1deg]"
+        >
+          Vendredi 30 Janvier 2026
+        </div>
+        <h1
+          class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-xl leading-tight"
+        >
+          Rapprochons les voisins par les mots.
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-white/95 font-medium mb-10 max-w-2xl"
+        >
+          0% stress, 100% convivialité.
+          <br />
+          Venez pour les mots, restez pour l’apéro !
+        </p>
+        <a
+          href="#participer"
+          class="bg-white text-poster-blue px-12 py-4 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-2xl"
+        >
+          Trouver ma dictée à Paris
+        </a>
+      </div>
+    </section>
+
+    <!-- Participer -->
+    <section id="participer" class="py-24 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6"
+        >
+          <div>
+            <h2 class="text-4xl font-bold mb-2">Où se trouve la dictée ?</h2>
+            <p class="text-slate-500 text-lg">
+              Découvrez les lieux de rendez-vous à Paris pour le 30 janvier
+              2026.
+            </p>
+          </div>
+          <div
+            class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm flex items-center"
+          >
+            <button
+              id="btn-map"
+              onclick="switchView('map')"
+              class="px-6 py-2 bg-poster-blue text-white rounded-lg font-bold transition-all"
+            >
+              Vue Carte
+            </button>
+            <button
+              id="btn-list"
+              onclick="switchView('list')"
+              class="px-6 py-2 text-slate-400 font-bold hover:text-poster-blue transition-all ml-1"
+            >
+              Vue Liste
+            </button>
+          </div>
+        </div>
+
+        <!-- Layout dynamique -->
+        <div
+          id="participate-grid"
+          class="grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
+          <!-- Zone Principale -->
+          <div
+            id="main-display"
+            class="lg:col-span-2 h-[550px] rounded-[2.5rem] overflow-hidden shadow-inner border-4 border-white relative bg-white transition-all duration-300"
+          >
+            <!-- Vue Carte -->
+            <div id="view-map" class="absolute inset-0 w-full h-full">
+              <iframe
+                class="w-full h-full grayscale-[0.2]"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.9677793361!2d2.276995594034854!3d48.85883773913385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sfr!2sfr!4v1715600000000!5m2!1sfr!2sfr"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            <!-- Vue Liste -->
+            <div
+              id="view-list"
+              class="absolute inset-0 w-full h-full overflow-y-auto p-10 view-hidden bg-white"
+            >
+              <h3
+                class="text-2xl font-bold mb-8 text-poster-navy border-b pb-4"
+              >
+                Tous les lieux de dictée
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                  class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-poster-blue transition-all group cursor-pointer"
+                >
+                  <span
+                    class="bg-poster-blue text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-2 inline-block"
+                  >
+                    Ouvert
+                  </span>
+                  <p class="font-bold text-lg group-hover:text-poster-blue">
+                    Paris 19e - Place des Fêtes
+                  </p>
+                  <p class="text-sm text-slate-500">
+                    Début : 18h30 | Ambiance conviviale
+                  </p>
+                </div>
+                <div
+                  class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-poster-blue transition-all group cursor-pointer"
+                >
+                  <span
+                    class="bg-poster-blue text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-2 inline-block"
+                  >
+                    Ouvert
+                  </span>
+                  <p class="font-bold text-lg group-hover:text-poster-blue">
+                    Paris 11e - Parmentier
+                  </p>
+                  <p class="text-sm text-slate-500">
+                    Début : 19h00 | Apéro des voisins
+                  </p>
+                </div>
+                <div
+                  class="p-6 bg-slate-50 rounded-2xl border border-slate-100 opacity-60"
+                >
+                  <span
+                    class="bg-slate-400 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-2 inline-block"
+                  >
+                    Complet
+                  </span>
+                  <p class="font-bold text-lg">Paris 18e - Montmartre</p>
+                  <p class="text-sm text-slate-500">Début : 18h00</p>
+                </div>
+                <div
+                  class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-poster-blue transition-all group cursor-pointer"
+                >
+                  <span
+                    class="bg-poster-blue text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-2 inline-block"
+                  >
+                    Ouvert
+                  </span>
+                  <p class="font-bold text-lg group-hover:text-poster-blue">
+                    Paris 20e - Belleville
+                  </p>
+                  <p class="text-sm text-slate-500">
+                    Début : 19h15 | Dans la cour
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Quartiers (Cachée en mode Liste) -->
+          <div
+            id="sidebar-quartiers"
+            class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm flex flex-col"
+          >
+            <h3
+              class="font-bold text-xl mb-6 flex items-center text-poster-blue"
+            >
+              <span class="mr-2">📍</span>
+              Quartiers de Paris
+            </h3>
+            <div class="space-y-4 flex-grow">
+              <div
+                class="p-4 bg-slate-50 rounded-2xl border-l-4 border-poster-blue shadow-sm"
+              >
+                <p class="font-bold">Paris 19e</p>
+                <p class="text-xs text-slate-400 font-bold italic">
+                  Place des Fêtes
+                </p>
+              </div>
+              <div
+                class="p-4 bg-white border border-slate-100 rounded-2xl hover:bg-slate-50 transition cursor-pointer"
+              >
+                <p class="font-bold">Paris 11e</p>
+                <p class="text-xs text-slate-400">Parmentier</p>
+              </div>
+              <div
+                class="p-4 bg-white border border-slate-100 rounded-2xl hover:bg-slate-50 transition cursor-pointer"
+              >
+                <p class="font-bold">Paris 18e</p>
+                <p class="text-xs text-slate-400">Montmartre</p>
+              </div>
+              <div
+                class="p-4 bg-white border border-slate-100 rounded-2xl hover:bg-slate-50 transition cursor-pointer"
+              >
+                <p class="font-bold">Paris 20e</p>
+                <p class="text-xs text-slate-400">Belleville</p>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t text-center">
+              <a
+                href="#"
+                class="text-slate-400 font-bold text-sm hover:text-poster-blue"
+              >
+                Voir les autres quartiers →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qui sommes-nous ? -->
+    <section id="quisommesnous" class="py-24">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-10 text-poster-blue">
+          Rapprochons-nous par les mots.
+        </h2>
+
+        <div
+          class="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed mb-16"
+        >
+          <p class="mb-6 font-medium">
+            <strong>La Dictée des Voisins</strong>
+            est une invitation à se retrouver pour partager un moment convivial
+            autour de la langue française.
+          </p>
+          <p>
+            Nous créons des espaces de rencontre à Paris où l'orthographe
+            devient un prétexte pour échanger. On écrit, on rit ensemble de nos
+            erreurs et on finit la soirée en beauté.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+          <div
+            class="bg-white p-12 rounded-[3rem] shadow-2xl border border-slate-50 hover:scale-105 transition duration-300"
+          >
+            <span class="block text-6xl font-bold text-amber-500 mb-2"
+              >2 500+</span
+            >
+            <span
+              class="text-lg font-bold text-slate-400 uppercase tracking-widest"
+              >Parisiens</span
+            >
+          </div>
+          <div
+            class="bg-white p-12 rounded-[3rem] shadow-2xl border border-slate-50 hover:scale-105 transition duration-300"
+          >
+            <span class="block text-6xl font-bold text-rose-500 mb-2">20</span>
+            <span
+              class="text-lg font-bold text-slate-400 uppercase tracking-widest"
+              >Arrondissements</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partenaires -->
+    <section id="partenaires" class="py-24 bg-white border-t border-slate-50">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2
+          class="text-2xl md:text-3xl font-bold text-slate-500 mb-20 uppercase tracking-[0.2em]"
+        >
+          Ils nous font confiance
+        </h2>
+
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-16 items-center mb-24"
+        >
+          <!-- PILOT -->
+          <div class="partner-logo">
+            <span
+              class="text-2xl font-black text-blue-800 italic tracking-tighter"
+              >PILOT</span
+            >
+          </div>
+          <!-- FRANCE CULTURE -->
+          <div class="partner-logo">
+            <div
+              class="w-12 h-12 bg-purple-700 flex items-center justify-center text-white font-bold text-[8px] leading-tight text-center"
+            >
+              france
+              <br />
+              culture
+            </div>
+          </div>
+          <!-- LA LIBRAIRIE DES ECOLES -->
+          <div class="partner-logo flex items-center justify-center space-x-1">
+            <div class="w-6 h-6 bg-sky-400 rounded-full"></div>
+            <span
+              class="text-[10px] font-bold text-sky-900 leading-none text-left"
+            >
+              la librairie
+              <br />
+              des écoles
+            </span>
+          </div>
+          <!-- LES PETITS DEVOIRS -->
+          <div class="partner-logo">
+            <span
+              class="bg-yellow-400 px-3 py-1 font-bold text-[9px] italic shadow-sm"
+              >Les petits devoirs</span
+            >
+          </div>
+          <!-- PLAINE COMMUNE HABITAT -->
+          <div class="partner-logo flex flex-col items-center">
+            <span class="text-orange-500 text-2xl">🧡</span>
+            <span
+              class="text-[8px] font-bold uppercase text-orange-900 tracking-tighter leading-none"
+            >
+              Plaine Commune
+              <br />
+              Habitat
+            </span>
+          </div>
+
+          <!-- LOGIREP -->
+          <div class="partner-logo">
+            <span
+              class="font-bold text-blue-900 italic border border-blue-900 px-2 text-sm uppercase"
+              >LogiRep</span
+            >
+          </div>
+          <!-- CENTRE DES MONUMENTS NATIONAUX -->
+          <div class="partner-logo border-l-2 border-red-500 pl-2 text-left">
+            <span class="text-[8px] font-bold leading-tight block uppercase">
+              Centre des
+              <br />
+              Monuments
+              <br />
+              Nationaux
+            </span>
+          </div>
+          <!-- SAINT DENIS -->
+          <div class="partner-logo">
+            <span class="font-bold text-blue-900 text-lg">
+              Saint
+              <span class="text-orange-500">★</span>
+              Denis
+            </span>
+          </div>
+          <!-- CGET -->
+          <div class="partner-logo">
+            <span
+              class="font-black text-blue-600 text-3xl italic tracking-tighter uppercase"
+              >cget</span
+            >
+          </div>
+          <!-- SOCIETE DU GRAND PARIS -->
+          <div class="partner-logo text-left flex items-start">
+            <div class="w-3 h-8 bg-blue-900 mr-2 rounded-full opacity-20"></div>
+            <span
+              class="text-[9px] font-bold text-blue-900 uppercase leading-none"
+            >
+              Société du
+              <br />
+              Grand Paris
+            </span>
+          </div>
+
+          <!-- ILE DE FRANCE -->
+          <div
+            class="partner-logo flex items-center justify-center text-red-600"
+          >
+            <span class="text-2xl mr-1">✷</span>
+            <span class="font-black text-lg italic uppercase tracking-tighter"
+              >îledeFrance</span
+            >
+          </div>
+          <!-- FUAJ -->
+          <div class="partner-logo">
+            <div
+              class="border-2 border-orange-500 rounded-full w-12 h-12 flex items-center justify-center font-bold text-[10px] text-orange-600"
+            >
+              FUAJ
+            </div>
+          </div>
+          <!-- AURORE -->
+          <div class="partner-logo flex flex-col items-center">
+            <span class="text-amber-400 text-xs">★★★</span>
+            <span
+              class="text-xl font-black text-amber-500 uppercase tracking-tighter"
+              >Aurore</span
+            >
+          </div>
+        </div>
+
+        <!-- Bouton Devenir partenaire -->
+        <button
+          class="bg-poster-navy text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-slate-800 transition shadow-2xl"
+        >
+          Devenir partenaire
+        </button>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-slate-50">
+      <div class="max-w-4xl mx-auto px-4">
+        <div
+          class="bg-white rounded-[3rem] p-12 shadow-2xl border border-slate-100"
+        >
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-poster-navy mb-4">Contact</h2>
+            <p class="text-slate-500 font-bold">
+              L'équipe vous répond pour l'édition de Paris du 30 janvier.
+            </p>
+          </div>
+
+          <form
+            action="https://formspree.io/f/mgolwbyd"
+            method="POST"
+            id="contact-form"
+            class="space-y-6"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                name="nom"
+                required
+                class="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-sky-600 outline-none"
+                placeholder="Votre nom"
+              />
+              <input
+                type="email"
+                name="email"
+                required
+                class="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-sky-600 outline-none"
+                placeholder="Votre email"
+              />
+            </div>
+            <textarea
+              name="message"
+              required
+              class="w-full px-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl focus:border-sky-600 outline-none h-36"
+              placeholder="Votre message..."
+            ></textarea>
+            <button
+              type="submit"
+              id="btn-submit"
+              class="w-full bg-sky-600 text-white py-5 rounded-2xl font-bold text-xl hover:brightness-110 shadow-lg transition"
+            >
+              Envoyer le message
+            </button>
+            <p id="form-status" class="text-center font-bold mt-4 hidden"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-slate-100 text-center">
+      <div class="max-w-7xl mx-auto px-4">
+        <p
+          class="text-slate-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4"
+        >
+          30 JANVIER 2026 — PARIS
+        </p>
+        <p
+          class="text-slate-300 text-[9px] uppercase font-bold tracking-widest"
+        >
+          &copy; La Dictée des Voisins. Tous droits réservés.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // 1. GESTION VUE CARTE / LISTE (Inchangé)
+      function switchView(mode) {
+        const map = document.getElementById("view-map");
+        const list = document.getElementById("view-list");
+        const sidebar = document.getElementById("sidebar-quartiers");
+        const mainDisplay = document.getElementById("main-display");
+        const btnMap = document.getElementById("btn-map");
+        const btnList = document.getElementById("btn-list");
+
+        if (mode === "map") {
+          map.classList.remove("view-hidden");
+          list.classList.add("view-hidden");
+          sidebar.classList.remove("view-hidden");
+          mainDisplay.classList.replace("lg:col-span-3", "lg:col-span-2");
+          btnMap.classList.add("bg-sky-600", "text-white");
+          btnList.classList.remove("bg-sky-600", "text-white");
+        } else {
+          map.classList.add("view-hidden");
+          list.classList.remove("view-hidden");
+          sidebar.classList.add("view-hidden");
+          mainDisplay.classList.replace("lg:col-span-2", "lg:col-span-3");
+          btnList.classList.add("bg-sky-600", "text-white");
+          btnMap.classList.remove("bg-sky-600", "text-white");
+        }
+      }
+
+      // 2. ENVOI FORMULAIRE SANS PHP (FORMSPREE)
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
+      const btn = document.getElementById("btn-submit");
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        btn.innerText = "Envoi en cours...";
+        btn.disabled = true;
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+
+          if (response.ok) {
+            status.innerHTML = "✅ Merci ! Votre message a bien été envoyé.";
+            status.className = "text-center font-bold mt-4 text-green-600";
+            status.classList.remove("hidden");
+            form.reset();
+          } else {
+            throw new Error();
+          }
+        } catch (error) {
+          status.innerHTML = "❌ Une erreur est survenue lors de l'envoi.";
+          status.className = "text-center font-bold mt-4 text-red-500";
+          status.classList.remove("hidden");
+        } finally {
+          btn.innerText = "Envoyer le message";
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
