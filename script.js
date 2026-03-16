@@ -602,15 +602,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = await response.json();
                     if (data.contents) {
                         const parser = new DOMParser();
-                        const xmlDoc = parser.parseFromString(data.contents, "text/xml");
-                        return Array.from(xmlDoc.querySelectorAll("item")).map(item => ({
+                        // Google News sometimes returns different encodings; ensures we parse as XML
+                        const xmlDoc = parser.parseFromString(data.contents, "application/xml");
+                        
+                        // Check for parsing errors
+                        const parseError = xmlDoc.getElementsByTagName("parsererror");
+                        if (parseError.length > 0) {
+                            console.error("RSS Parse Error:", parseError[0].textContent);
+                            return [];
+                        }
+
+                        const items = Array.from(xmlDoc.querySelectorAll("item"));
+                        return items.map(item => ({
                             title: item.querySelector("title")?.textContent || "No Title",
                             link: item.querySelector("link")?.textContent || "#",
                             pubDate: item.querySelector("pubDate")?.textContent || ""
                         }));
                     }
                     return [];
-                } catch (err) { return []; }
+                } catch (err) { 
+                    console.error("Fetch RSS Error:", err);
+                    return []; 
+                }
             });
 
             const results = await Promise.all(fetchPromises);
