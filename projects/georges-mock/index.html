@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georges — Assistant IA | HEGP · AP-HP</title>
+    <meta name="description" content="Mock de l'assistant médical IA Georges pour l'Hôpital Européen Georges-Pompidou (AP-HP).">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen active">
+            <div class="login-bg-pattern"></div>
+            <div class="login-card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/a/a2/Assistance_publique_-_H%C3%B4pitaux_de_Paris_logo.svg/1200px-Assistance_publique_-_H%C3%B4pitaux_de_Paris_logo.svg.png" alt="Logo AP-HP" class="aphp-logo">
+                    <h1>Georges</h1>
+                    <p class="version-badge">v2.1 — IA Pilote</p>
+                </div>
+                <p class="subtitle">Plateforme d'assistance hospitalière intelligente<br><strong>Hôpital Européen Georges-Pompidou</strong></p>
+                <div class="input-group">
+                    <label for="username"><i class="uil uil-user"></i> Identifiant AP-HP</label>
+                    <input type="text" id="username" placeholder="prenom.nom" value="m.kolak">
+                </div>
+                <div class="input-group">
+                    <label for="password"><i class="uil uil-lock-alt"></i> Mot de passe</label>
+                    <input type="password" id="password" placeholder="••••••••" value="admin">
+                </div>
+                <button id="login-btn" class="btn-primary">
+                    <i class="uil uil-sign-in-alt"></i> Se connecter
+                </button>
+                <p class="login-hint"><i class="uil uil-info-circle"></i> Environnement de démonstration — <strong>m.kolak / admin</strong></p>
+            </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div id="chat-screen" class="screen">
+            <div class="chat-layout">
+                
+                <!-- LEFT SIDEBAR -->
+                <aside class="chat-sidebar">
+                    <div class="sidebar-top">
+                        <div class="sidebar-brand">
+                            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/a/a2/Assistance_publique_-_H%C3%B4pitaux_de_Paris_logo.svg/1200px-Assistance_publique_-_H%C3%B4pitaux_de_Paris_logo.svg.png" alt="AP-HP" class="sidebar-logo">
+                            <span>Georges</span>
+                        </div>
+                        <button class="btn-new-chat" id="new-chat-btn"><i class="uil uil-plus"></i> Nouvelle discussion</button>
+                    </div>
+                    <div class="conversations-list">
+                        <div class="conv-section-label">Aujourd'hui</div>
+                        <div class="conv-item active" data-conv="1">
+                            <i class="uil uil-comment-alt-medical"></i>
+                            <div class="conv-info">
+                                <h3>Accueil patient J. Durand</h3>
+                                <span>En cours</span>
+                            </div>
+                        </div>
+                        <div class="conv-section-label">Hier</div>
+                        <div class="conv-item" data-conv="2">
+                            <i class="uil uil-heart-medical"></i>
+                            <div class="conv-info">
+                                <h3>Protocole Infarctus Aigu</h3>
+                                <span>Terminé</span>
+                            </div>
+                        </div>
+                        <div class="conv-item" data-conv="3">
+                            <i class="uil uil-box"></i>
+                            <div class="conv-info">
+                                <h3>Inventaire Urgences S12</h3>
+                                <span>Terminé</span>
+                            </div>
+                        </div>
+                        <div class="conv-section-label">Semaine dernière</div>
+                        <div class="conv-item" data-conv="4">
+                            <i class="uil uil-notes"></i>
+                            <div class="conv-info">
+                                <h3>Procédure de sortie</h3>
+                                <span>Archivé</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-user">
+                        <div class="user-avatar">MK</div>
+                        <div class="user-meta">
+                            <strong>Marko Kolak</strong>
+                            <span>Délégué Hospitalier</span>
+                        </div>
+                        <button id="logout-btn" class="btn-icon-sm" title="Déconnexion"><i class="uil uil-sign-out-alt"></i></button>
+                    </div>
+                </aside>
+
+                <!-- CENTER: Chat -->
+                <main class="chat-main">
+                    <header class="chat-header">
+                        <div class="header-left">
+                            <button id="sidebar-toggle" class="btn-icon-sm mobile-only"><i class="uil uil-bars"></i></button>
+                            <div class="header-info">
+                                <h2>Assistant Médical <span class="badge">HEGP</span> <span class="badge badge-ai">IA Gemini</span></h2>
+                                <p class="status"><span class="pulse"></span> Session sécurisée — <span id="session-timer">0:00</span></p>
+                            </div>
+                        </div>
+                        <div class="header-right">
+                            <button class="btn-icon-sm" title="Exporter la conversation"><i class="uil uil-file-download-alt"></i></button>
+                            <button id="summary-toggle" class="btn-icon-sm" title="Panneau résumé"><i class="uil uil-clipboard-alt"></i></button>
+                        </div>
+                    </header>
+
+                    <!-- Welcome Screen (shown when no messages) -->
+                    <div id="welcome-screen" class="welcome-screen">
+                        <div class="welcome-content">
+                            <div class="welcome-icon">
+                                <i class="uil uil-robot"></i>
+                            </div>
+                            <h2>Bonjour, <span id="welcome-name">Marko</span></h2>
+                            <p>Quel est le motif de votre venue aux urgences ?</p>
+                            <div class="quick-actions">
+                                <button class="quick-btn" data-prompt="J'ai une forte douleur au milieu de la poitrine et du mal à respirer.">
+                                    <i class="uil uil-heart-medical"></i>
+                                    <span>Douleur à la poitrine</span>
+                                </button>
+                                <button class="quick-btn" data-prompt="Mon enfant a plus de 39 de fièvre depuis 2 jours et ne mange plus.">
+                                    <i class="uil uil-temperature"></i>
+                                    <span>Forte fièvre / Enfant malade</span>
+                                </button>
+                                <button class="quick-btn" data-prompt="Je me suis coupé profondément avec un couteau de cuisine, ça saigne beaucoup.">
+                                    <i class="uil uil-tear"></i>
+                                    <span>Coupure / Blessure grave</span>
+                                </button>
+                                <button class="quick-btn" data-prompt="Je me sens très faible, j'ai des vertiges et j'ai failli m'évanouir.">
+                                    <i class="uil uil-dizzy-face"></i>
+                                    <span>Vertiges / Malaise</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chat-messages" class="chat-messages hidden">
+                        <!-- Messages will appear here -->
+                    </div>
+
+                    <div class="chat-input-area">
+                        <div class="consent-notice">
+                            <i class="uil uil-shield-check"></i> Session sécurisée · Conforme RGPD & HDS — Les données ne sont pas conservées.
+                        </div>
+                        <form id="chat-form" class="input-container">
+                            <button type="button" class="btn-attach" title="Joindre un document"><i class="uil uil-paperclip"></i></button>
+                            <textarea id="user-input" placeholder="Décrivez la situation ou posez une question..." rows="1"></textarea>
+                            <button type="submit" id="send-btn" class="btn-send"><i class="uil uil-message"></i></button>
+                        </form>
+                    </div>
+                </main>
+
+                <!-- RIGHT PANEL: Patient Summary -->
+                <aside class="patient-summary" id="patient-summary">
+                    <header class="summary-header">
+                        <i class="uil uil-clipboard-alt"></i> Résumé Patient
+                        <button id="summary-close" class="btn-icon-sm summary-close-btn"><i class="uil uil-times"></i></button>
+                    </header>
+                    <div class="summary-content">
+                        <div class="summary-section">
+                            <label><i class="uil uil-user"></i> Identité</label>
+                            <p id="p-name">En attente d'informations...</p>
+                        </div>
+                        <div class="summary-section">
+                            <label><i class="uil uil-thermometer"></i> Symptômes détectés</label>
+                            <ul id="p-symptoms">
+                                <li class="empty">Aucun symptôme détecté</li>
+                            </ul>
+                        </div>
+                        <div class="summary-section">
+                            <label><i class="uil uil-stethoscope"></i> Niveau d'urgence estimé</label>
+                            <div id="urgency-level" class="urgency-indicator">
+                                <div class="urgency-bar">
+                                    <div class="urgency-fill" id="urgency-fill" style="width: 0%"></div>
+                                </div>
+                                <span id="urgency-text" class="urgency-text">Non évalué</span>
+                            </div>
+                        </div>
+                        <div class="summary-section">
+                            <label><i class="uil uil-notes"></i> Recommandations</label>
+                            <div id="p-rec" class="rec-box">
+                                Les recommandations de Georges apparaîtront ici au fur et à mesure de la conversation.
+                            </div>
+                        </div>
+                        <div class="summary-section">
+                            <label><i class="uil uil-history"></i> Actions effectuées</label>
+                            <ul id="actions-log" class="actions-log">
+                                <li class="empty">Aucune action pour le moment</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="disclaimer-bottom">
+                        <i class="uil uil-exclamation-triangle"></i> Outil d'aide à la décision — ne remplace pas un avis médical professionnel.
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
